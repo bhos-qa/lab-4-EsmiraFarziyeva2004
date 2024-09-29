@@ -45,6 +45,7 @@ jobs:
           args: >
             -Dsonar.projectKey=YOUR_PROJECT_KEY
             -Dsonar.organization=YOUR_ORGANIZATION_KEY
+            -Dsonar.projectBaseDir=./ # Update this path if needed
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
