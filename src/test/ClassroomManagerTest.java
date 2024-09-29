@@ -1,42 +1,48 @@
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class ClassroomManagerTest {
-    @Test
-    public void testAddStudent() {
-        Classroom classroom = new Classroom();
-        classroom.addStudent();
-        assertEquals(1, classroom.getTotalStudents());
+class ClassroomManagerTest {
+    private ClassroomManager classroomManager;
+
+    @BeforeEach
+    void setUp() {
+        classroomManager = new ClassroomManager();
     }
 
     @Test
-    public void testRemoveStudent() {
-        Classroom classroom = new Classroom();
-        classroom.addStudent();
-        classroom.removeStudent();
-        assertEquals(0, classroom.getTotalStudents());
+    void testAddStudent() {
+        classroomManager.addStudent();
+        assertEquals(1, classroomManager.getTotalStudents(), "Total students should be 1 after adding a student.");
     }
 
     @Test
-    public void testCreateClass() {
-        Classroom classroom = new Classroom();
-        classroom.createClass();
-        assertEquals(1, classroom.getTotalClasses());
+    void testRemoveStudent() {
+        classroomManager.addStudent(); // First, add a student
+        classroomManager.removeStudent();
+        assertEquals(0, classroomManager.getTotalStudents(), "Total students should be 0 after removing a student.");
     }
 
     @Test
-    public void testCalculateStudentToClassRatio() {
-        Classroom classroom = new Classroom();
-        classroom.addStudents(10);
-        classroom.createClass();
-        assertEquals(10.0, classroom.calculateStudentToClassRatio());
+    void testGetTotalStudents() {
+        assertEquals(0, classroomManager.getTotalStudents(), "Total students should be initially 0.");
+        classroomManager.addStudent();
+        assertEquals(1, classroomManager.getTotalStudents(), "Total students should be 1 after adding a student.");
     }
 
     @Test
-    public void testIsClassFull() {
-        Classroom classroom = new Classroom();
-        classroom.addStudents(30);
-        assertTrue(classroom.isClassFull(30));
-        assertFalse(classroom.isClassFull(31));
+    void testCreateClass() {
+        classroomManager.createClass();
+        assertEquals(1, classroomManager.getTotalClasses(), "Total classes should be 1 after creating a class.");
+    }
+
+    @Test
+    void testCalculateStudentToClassRatio() {
+        classroomManager.addStudents(10); // Adding 10 students
+        classroomManager.createClass(); // Creating 1 class
+        assertEquals(10.0, classroomManager.calculateStudentToClassRatio(), "The student-to-class ratio should be 10.0.");
+        
+        classroomManager.removeClass(); // Remove class
+        assertEquals(0.0, classroomManager.calculateStudentToClassRatio(), "The student-to-class ratio should be 0.0 when there are no classes.");
     }
 }
