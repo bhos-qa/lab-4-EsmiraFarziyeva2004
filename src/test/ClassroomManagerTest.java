@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ClassroomTest {
+public class ClassroomManagerTest {
     @Test
     public void testAddStudent() {
         Classroom classroom = new Classroom();
