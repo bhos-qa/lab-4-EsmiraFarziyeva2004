@@ -24,11 +24,11 @@ public class LibraryTest {
         assertTrue(library.listBooks().contains("The Great Gatsby"), "The book should be added to the list");
     }
 
-    // Test for adding the same book again
+    // Test for adding the same book again (covering duplicate prevention)
     @Test
     public void testAddDuplicateBook() {
         library.addBook("1984");
-        library.addBook("1984"); // Try adding the same book again
+        library.addBook("1984"); // Attempt to add the same book again
         assertEquals(1, library.listBooks().size(), "The book list should contain only one copy of '1984'");
     }
 
