@@ -38,8 +38,8 @@ sonarqube {
         property("sonar.projectKey", "bhos-qa_lab-3-EsmiraFarziyeva2004")
         property("sonar.organization", "bhos-qa")
         property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.login", "7cc9d43866d8aad7fc6f68f7cb356ada7a12fc31")
-        property("sonar.sources", "src/main/java") // Updated to reflect the correct path
+        property("sonar.login", "29a300f5cc16200a0d11b85c41f406a005e767e7")
+        property("sonar.sources", "src/main/java") 
         property("sonar.java.binaries", "build/classes/java/main")
         property("sonar.java.libraries", "build/libs/*.jar")
         property("sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml")
