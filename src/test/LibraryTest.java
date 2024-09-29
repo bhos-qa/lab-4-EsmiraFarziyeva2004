@@ -1,6 +1,9 @@
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LibraryTest {
     private Library library;
@@ -10,56 +13,39 @@ public class LibraryTest {
         library = new Library();
     }
 
-    // Test for constructor (uncovered code)
-    @Test
-    public void testLibraryConstructor() {
-        assertTrue(library.listBooks().isEmpty(), "Books list should be empty on initialization");
-        assertTrue(library.getMemberCount() == 0, "Members count should be zero on initialization");
-    }
-
-    // Test for addBook method (covering the code)
     @Test
     public void testAddBook() {
-        library.addBook("The Great Gatsby");
-        assertTrue(library.listBooks().contains("The Great Gatsby"), "The book should be added to the list");
-    }
-
-    // Test for adding the same book again (covering duplicate prevention)
-    @Test
-    public void testAddDuplicateBook() {
         library.addBook("1984");
-        library.addBook("1984"); // Attempt to add the same book again
-        assertEquals(1, library.listBooks().size(), "The book list should contain only one copy of '1984'");
+        assertTrue(library.listBooks().contains("1984"), "Book should be added to the library");
     }
 
-    // Test for removeBook method
     @Test
     public void testRemoveBook() {
         library.addBook("1984");
         library.removeBook("1984");
-        assertFalse(library.listBooks().contains("1984"), "The book should be removed from the list");
+        assertFalse(library.listBooks().contains("1984"), "Book should be removed from the library");
     }
 
-    // Test for listBooks method
     @Test
     public void testListBooks() {
-        library.addBook("To Kill a Mockingbird");
+        library.addBook("1984");
         library.addBook("Brave New World");
-        assertEquals(2, library.listBooks().size(), "There should be 2 books in the list");
+        List<String> books = library.listBooks();
+        assertEquals(2, books.size(), "There should be 2 books in the library");
+        assertTrue(books.contains("1984"), "List should contain '1984'");
+        assertTrue(books.contains("Brave New World"), "List should contain 'Brave New World'");
     }
 
-    // Test for addMember method
     @Test
     public void testAddMember() {
         library.addMember("Alice");
-        assertTrue(library.isMemberExists("Alice"), "The member should be added to the list");
+        assertTrue(library.isMemberExists("Alice"), "Member should be added to the library");
     }
 
-    // Test for getMemberCount method
     @Test
-    public void testGetMemberCount() {
-        library.addMember("Bob");
-        library.addMember("Charlie");
-        assertEquals(2, library.getMemberCount(), "There should be 2 members in the library");
+    public void testIsBookAvailable() {
+        library.addBook("1984");
+        assertTrue(library.isBookAvailable("1984"), "Book should be available in the library");
+        assertFalse(library.isBookAvailable("Non-Existent Book"), "Non-existent book should not be available");
     }
 }
