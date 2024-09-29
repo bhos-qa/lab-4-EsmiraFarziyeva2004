@@ -1,8 +1,8 @@
-public class Classroom {
+public class ClassroomManager {
     private int totalStudents;
     private int totalClasses;
     
-    public Classroom() {
+    public ClassroomManager() {
         this.totalStudents = 0;
         this.totalClasses = 0;
     }
